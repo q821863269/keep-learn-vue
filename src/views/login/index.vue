@@ -63,7 +63,7 @@
           </el-row>
         </el-col>
         <el-col :xs="11" :sm="9">
-          <el-button class="block" type="success" @click="thirdparty">
+          <el-button class="block" type="primary" @click="thirdparty">
             第三方登录
           </el-button>
         </el-col>
@@ -133,7 +133,7 @@ export default {
           this.$store.dispatch('user/login', this.loginForm)
             .then(() => {
               this.$router.push({ path: this.redirect || '/', query: this.otherQuery }).catch(() => {})
-              // this.loading = false
+              this.loading = false
             })
             .catch(() => {
               this.loading = false
@@ -221,7 +221,7 @@ $cursor: #fff;
 </style>
 
 <style lang="scss" scoped>
-$bg:#6A5ACD;
+$bg:#2E3034;
 $dark_gray:#fff;
 $light_gray:#eee;
 

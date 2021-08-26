@@ -30,8 +30,8 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(({ config, data }) => {
   const { code, msg } = data
-  if (code !== '00000') {
-    console.log(msg)
+  if (code !== 0) {
+    return Promise.reject(msg)
   } else {
     return data
   }
