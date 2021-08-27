@@ -2,22 +2,20 @@
   <div class="app-container">
     <div v-if="user">
       <el-row :gutter="20">
-
         <el-col :span="6" :xs="24">
           <user-card :user="user" />
         </el-col>
-
         <el-col :span="18" :xs="24">
           <el-card>
             <el-tabs v-model="activeTab">
-              <el-tab-pane label="Activity" name="activity">
+              <el-tab-pane label="账号信息" name="账号信息">
+                <account :user="user" />
+              </el-tab-pane>
+              <el-tab-pane label="活动" name="活动">
                 <activity />
               </el-tab-pane>
-              <el-tab-pane label="Timeline" name="timeline">
+              <el-tab-pane label="时间线" name="时间线">
                 <timeline />
-              </el-tab-pane>
-              <el-tab-pane label="Account" name="account">
-                <account :user="user" />
               </el-tab-pane>
             </el-tabs>
           </el-card>
@@ -41,13 +39,14 @@ export default {
   data () {
     return {
       user: {},
-      activeTab: 'activity'
+      activeTab: '账号信息'
     }
   },
   computed: {
     ...mapGetters([
       'nickname',
       'avatar',
+      'email',
       'roles'
     ])
   },
@@ -59,7 +58,7 @@ export default {
       this.user = {
         name: this.nickname,
         role: this.roles.join(' | '),
-        email: 'admin@test.com',
+        email: this.email,
         avatar: this.avatar
       }
     }

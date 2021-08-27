@@ -15,21 +15,19 @@
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
-          <router-link to="/profile/index">
-            <el-dropdown-item>简 介</el-dropdown-item>
-          </router-link>
-          <!-- <router-link to="/">
-            <el-dropdown-item>Dashboard</el-dropdown-item>
-          </router-link> -->
-          <a target="_blank" href="https://github.com/PanJiaChen/vue-element-admin/">
-            <el-dropdown-item>Github</el-dropdown-item>
-          </a>
-          <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
-            <el-dropdown-item>Docs</el-dropdown-item>
-          </a>
-          <el-dropdown-item divided @click.native="logout">
-            <span style="display:block;">登 出</span>
+          <el-dropdown-item>
+            <router-link to="/">首页</router-link>
           </el-dropdown-item>
+          <el-dropdown-item>
+            <router-link to="/profile/index">个人中心</router-link>
+          </el-dropdown-item>
+          <el-dropdown-item>
+            <a target="_blank" href="https://github.com/q821863269/">项目地址</a>
+          </el-dropdown-item>
+          <el-dropdown-item disabled>
+            <a target="_blank" href="https://www.baidu.com/">文 档</a>
+          </el-dropdown-item>
+          <el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>

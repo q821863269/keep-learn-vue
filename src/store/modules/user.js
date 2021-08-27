@@ -1,12 +1,14 @@
-import { login, logout, getUserInfo } from '@/api/user'
+import { login, logout } from '@/api/auth/oauth'
+import { getUserInfo } from '@/api/admin/user'
 import { getToken, setToken, removeToken, setRefreshToken, removeRefreshToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
 const state = {
   token: getToken(),
-  name: '',
-  avatar: '',
   introduction: '',
+  nickname: '',
+  avatar: '',
+  email: '',
   roles: [],
   perms: []
 }
@@ -23,6 +25,9 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+  },
+  SET_EMAIL: (state, email) => {
+    state.email = email
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
@@ -83,18 +88,18 @@ const actions = {
     return new Promise((resolve, reject) => {
       getUserInfo(state.token).then(response => {
         const { data } = response
-
         if (!data) {
           reject(new Error('Verification failed, please Login again.'))
         }
 
-        const { roles, nickname, avatar, perms } = data
+        const { nickname, avatar, email, roles, perms } = data
         // roles must be a non-empty array
         if (!roles || roles.length <= 0) {
           reject(new Error('getUserInfo: roles must be a non-null array!'))
         }
         commit('SET_NICKNAME', nickname)
         commit('SET_AVATAR', avatar)
+        commit('SET_EMAIL', email)
         commit('SET_ROLES', roles)
         commit('SET_PERMS', perms)
         resolve(data)

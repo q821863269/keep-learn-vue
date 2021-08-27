@@ -1,6 +1,6 @@
-import { constantRoutes } from '@/router'
+import { asyncRoutes, constantRoutes } from '@/router'
 import Layout from '@/layout'
-// import { list as listRoute } from '@/api/admin/route'
+import { getMenuRouteList } from '@/api/admin/menu'
 
 /**
  * Use meta.role to determine if the current user has permission
@@ -43,6 +43,9 @@ export function filterAsyncRoutes (routes, roles) {
       res.push(tmp)
     }
   })
+  asyncRoutes.forEach(route => {
+    res.push(route)
+  })
   return res
 }
 
@@ -61,15 +64,11 @@ const mutations = {
 const actions = {
   generateRoutes ({ commit }, roles) {
     return new Promise(resolve => {
-      // listRoute().then(response => {
-      //   let accessedRoutes = filterAsyncRoutes(response.data, roles)
-      //   commit('SET_ROUTES', accessedRoutes)
-      //   resolve(accessedRoutes)
-      // })
-      // TODO：暂时写死，动态路由还没做
-      let accessedRoutes = filterAsyncRoutes([], roles)
-      commit('SET_ROUTES', accessedRoutes)
-      resolve(accessedRoutes)
+      getMenuRouteList().then(response => {
+        let accessedRoutes = filterAsyncRoutes(response.data, roles)
+        commit('SET_ROUTES', accessedRoutes)
+        resolve(accessedRoutes)
+      })
     })
   }
 }

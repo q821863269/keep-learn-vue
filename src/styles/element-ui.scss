@@ -86,3 +86,8 @@
     min-width: 300px
   }
 }
+
+// 头像下拉框文字居中
+.el-dropdown-menu__item {
+  text-align: center;
+}

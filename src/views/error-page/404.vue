@@ -1,6 +1,6 @@
 <template>
   <!-- 必须有一层父元素 -->
-  <div class="eroor-container">
+  <div class="error-container">
     <!-- 这里才是真正的内容区 -->
     <span class="code">404</span>
     <br />
@@ -53,8 +53,8 @@ export default {
 </script>
 <style lang='scss' scoped>
 //@import url(); 引入公共css类
-.eroor-container {
-  height: 100vh;
+.error-container {
+  // height: 100vh;
   width: 100vw;
   text-align: center;
   padding-top: 20vh;
