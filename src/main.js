@@ -19,6 +19,16 @@ import './permission'
 // global filters
 import * as filters from './filters'
 
+// 移除浏览器提示 Added non-passive event listener to a scroll-blocking...
+import 'default-passive-events'
+
+import Pagination from '@/components/Pagination'
+import permission from '@/directive/permission'
+// 全局组件挂载
+Vue.component('Pagination', Pagination)
+// 全局指令注册
+Vue.use(permission)
+
 // set element-ui default size
 Vue.use(Element, {
   size: 'medium'

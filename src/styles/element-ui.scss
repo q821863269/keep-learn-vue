@@ -80,14 +80,55 @@
 
 // ==========================================================================================================================
 
-// 手机端的消息不要那么长
 @media only screen and (max-width: 470px) {
+  // 手机端的消息不要那么长
   .el-message {
     min-width: 300px
+  }
+
+  // 处理分页
+  .el-pagination__total {
+    display: flex !important;
+    margin: 0 5px 0 0 !important;
+    justify-content: flex-end;
+  }
+
+  .el-pagination__sizes {
+    display: flex !important;
+    margin: 0 0 8px 0 !important;
+    justify-content: flex-end;
+  }
+
+  .el-pagination__jump {
+    display: none !important;
   }
 }
 
 // 头像下拉框文字居中
 .el-dropdown-menu__item {
   text-align: center;
+}
+
+// 表格
+.el-table {
+	.el-table__header-wrapper, .el-table__fixed-header-wrapper {
+		th {
+			word-break: break-word;
+			background-color: #f8f8f9;
+			color: #515a6e;
+			height: 40px;
+			font-size: 13px;
+		}
+	}
+	.el-table__body-wrapper {
+		.el-button [class*="el-icon-"] + span {
+			margin-left: 1px;
+		}
+	}
+}
+
+// 分页居右
+.pagination-container .el-pagination {
+	float: right;
+  margin-bottom: 15px;
 }

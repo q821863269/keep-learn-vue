@@ -4,6 +4,7 @@
       :background="background"
       :current-page.sync="currentPage"
       :page-size.sync="pageSize"
+      :pager-count="pagerCount"
       :layout="layout"
       :page-sizes="pageSizes"
       :total="total"
@@ -32,10 +33,14 @@ export default {
       type: Number,
       default: 10
     },
+    pagerCount: {
+      type: Number,
+      default: 5
+    },
     pageSizes: {
       type: Array,
       default () {
-        return [5, 10, 20, 30, 50]
+        return [10, 20, 30, 50, 100]
       }
     },
     layout: {

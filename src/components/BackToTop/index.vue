@@ -90,8 +90,8 @@ export default {
   display: inline-block;
   text-align: center;
   cursor: pointer;*/
-  right: 20px;
-  bottom: 20px;
+  right: 10px;
+  bottom: 10px;
   line-height: 35px;
   background: #fff;
   position: fixed;
