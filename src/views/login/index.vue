@@ -4,7 +4,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
 
       <div class="title-container">
-        <h2 class="title">Go Duck 管理系统</h2>
+        <h2 class="title">{{ title }}</h2>
       </div>
 
       <el-form-item prop="username">
@@ -21,6 +21,7 @@
           autocomplete="on"
           maxlength="16"
           clearable
+          @keyup.enter.native="handleLogin"
         />
       </el-form-item>
 
@@ -82,6 +83,7 @@
 <script>
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》';
+import { title } from '@/settings'
 
 export default {
   name: 'Login',
@@ -97,6 +99,8 @@ export default {
     }
     // 这里存放数据
     return {
+      // 标题
+      title: title,
       loginForm: {
         username: 'admin',
         password: '123456'

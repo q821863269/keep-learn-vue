@@ -19,13 +19,24 @@ import './permission'
 // global filters
 import * as filters from './filters'
 
+// from validate
+import formValidate from '@/utils/formValidate'
+// globel method
+import { showDictValue, resetForm } from '@/utils'
+
 // 移除浏览器提示 Added non-passive event listener to a scroll-blocking...
 import 'default-passive-events'
 
 import Pagination from '@/components/Pagination'
+import RightToolbar from '@/components/RightToolbar'
 import permission from '@/directive/permission'
+// 全局方法挂载
+Vue.prototype.formValidate = formValidate
+Vue.prototype.resetForm = resetForm
+Vue.prototype.showDictValue = showDictValue
 // 全局组件挂载
 Vue.component('Pagination', Pagination)
+Vue.component('RightToolbar', RightToolbar)
 // 全局指令注册
 Vue.use(permission)
 

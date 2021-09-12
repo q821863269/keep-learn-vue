@@ -102,6 +102,11 @@
   .el-pagination__jump {
     display: none !important;
   }
+
+  // 处理dialog
+  .el-dialog {
+    width: 100vw !important;
+  }
 }
 
 // 头像下拉框文字居中
@@ -127,8 +132,36 @@
 	}
 }
 
+// 列表搜索栏表单上下间距
+.el-form--inline .el-form-item{
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+// 修改table第一列selection的padding
+.el-table-column--selection .cell {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
 // 分页居右
 .pagination-container .el-pagination {
 	float: right;
   margin-bottom: 15px;
+}
+
+// 修改弹出框中下拉框宽度不一致问题
+.el-form {
+  .el-select {
+    width: 100%;
+  }
+}
+
+// 修改上传弹出框没有铺满问题
+.el-upload.el-upload--text{
+  width: 100% !important;
+
+  .el-upload-dragger {
+    width: 100% !important;
+  }
 }

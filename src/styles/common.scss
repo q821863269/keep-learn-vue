@@ -1,0 +1,93 @@
+ /**
+ * 通用css样式布局处理
+ * Copyright (c) 2021
+ */
+
+ /** 基础通用 **/
+ .mb0{
+	margin-bottom: 0;
+}
+.ml0 {
+	margin-left: 10px;
+}
+.pt5 {
+	padding-top: 5px;
+}
+.pr5 {
+	padding-right: 5px;
+}
+.pb5 {
+	padding-bottom: 5px;
+}
+.mt5 {
+	margin-top: 5px;
+}
+.mr5 {
+	margin-right: 5px;
+}
+.mb5 {
+	margin-bottom: 5px;
+}
+.mb8 {
+	margin-bottom: 8px;
+}
+.ml5 {
+	margin-left: 5px;
+}
+.mt10 {
+	margin-top: 10px;
+}
+.mr10 {
+	margin-right: 10px;
+}
+.mb10 {
+	margin-bottom: 10px;
+}
+.ml10 {
+	margin-left: 10px;
+}
+.mt20 {
+	margin-top: 20px;
+}
+.mr20 {
+	margin-right: 20px;
+}
+.mb20 {
+	margin-bottom: 20px;
+}
+.m20 {
+	margin-left: 20px;
+}
+
+// =====================列表相关===========================
+.box-card-tree {
+	min-height: calc(100vh - 124px);
+  
+	.el-tree {
+	  margin-top: 10px;
+	}
+  }
+  
+  .box-card-search {
+	min-height: 140px;
+
+	.el-input {
+	  width: 220px;
+	}
+  }
+  
+  .box-card-table {
+	min-height: calc(100vh - 274px);
+  
+	.el-row {
+	  .el-col {
+		padding: 0 5px 5px 5px;
+	  }
+	}
+  }
+  
+  @media only screen and (max-width: 992px) {
+	.box-card-tree {
+	  min-height: 30vh;
+	}
+  }

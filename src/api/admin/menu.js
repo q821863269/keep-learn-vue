@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function getMenuRouteList () {
+export function route () {
   return request({
-    url: '/admin/menu/route',
+    url: '/admin/menus/route',
     method: 'get'
   })
 }

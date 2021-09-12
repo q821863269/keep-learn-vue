@@ -4,6 +4,7 @@
 @import './element-ui.scss';
 @import './sidebar.scss';
 @import './btn.scss';
+@import './common.scss';
 
 body {
   height: 100%;
@@ -122,6 +123,16 @@ aside {
 //main-container全局样式
 .app-container {
   padding: 15px;
+
+  .app-container-tree{
+    margin-bottom: 10px;
+  }
+
+  .app-container-table {
+    .el-card {
+      margin-bottom: 10px;
+    }
+  }
 }
 
 .components-container {

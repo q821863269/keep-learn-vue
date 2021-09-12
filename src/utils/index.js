@@ -355,3 +355,22 @@ export function removeClass (ele, cls) {
     ele.className = ele.className.replace(reg, ' ')
   }
 }
+
+/**
+ * 翻译字典值
+ * @param {String} val value
+ * @param {Array} dictArr 字典数组
+ * @returns name
+ */
+export function showDictValue (val, dictArr) {
+  if (val !== undefined) {
+    return dictArr.filter(item => item.value === val)[0].name
+  }
+}
+
+// 表单重置
+export function resetForm (refName) {
+  if (this.$refs[refName]) {
+    this.$refs[refName].resetFields()
+  }
+}
