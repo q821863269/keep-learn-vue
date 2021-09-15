@@ -208,7 +208,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="所属部门" prop="deptId">
-          <tree-select v-model="form.deptId" :options="deptOptions" placeholder="请选择所属部门" :defaultExpandLevel="Infinity" />
+          <tree-select v-model="form.deptId" :options="deptOptions" placeholder="请选择所属部门" :defaultExpandLevel="1" />
         </el-form-item>
         <el-form-item label="角色" prop="roleIds">
           <el-select v-model="form.roleIds" multiple placeholder="请选择角色" clearable>
