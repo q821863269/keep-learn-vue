@@ -1,7 +1,7 @@
 <template>
   <!-- 必须有一层父元素 -->
   <div class="app-container">
-    <div class="app-container-table">
+    <div class="app-container-right">
       <!-- 搜索条件 -->
       <el-card class="box-card-search" v-show="showSearch">
         <el-form ref="queryForm" :model="queryParams" :inline="true">
@@ -14,9 +14,8 @@
               size="small"
             />
           </el-form-item>
-          <!-- 状态过滤有bug，所以暂时关闭 -->
-          <!-- <el-form-item label="状态" prop="status">
-            <el-select v-model="queryParams.status" placeholder="状态" clearable filterable size="small">
+          <el-form-item label="状态" prop="status">
+            <el-select v-model="queryParams.status" placeholder="请选择状态" clearable filterable size="small">
               <el-option
                 v-for="dict in statusOptions"
                 :key="dict.value"
@@ -24,7 +23,7 @@
                 :value="dict.value"
               />
             </el-select>
-          </el-form-item> -->
+          </el-form-item>
           <el-form-item>
             <el-button
               type="primary"
@@ -48,13 +47,10 @@
       <el-card class="box-card-table">
         <el-row class="mb10">
           <el-col :span="1.5">
-            <el-button
-              type="primary"
-              icon="el-icon-plus"
-              size="mini"
-              @click="handleAdd"
-              >新增</el-button
-            >
+            <el-button type="success" icon="el-icon-plus" size="mini" @click="handleAdd">新增</el-button>
+          </el-col>
+          <el-col :span="1.5">
+            <el-button type="danger" :icon="expandOptions.icon" size="mini" @click="handleExpand">{{ expandOptions.value }}</el-button>
           </el-col>
           <right-toolbar
             :show-search.sync="showSearch"
@@ -63,12 +59,13 @@
         </el-row>
         <!-- 表格组件 -->
         <el-table
+          v-if="expandOptions.refreshTable"
           v-loading="loading"
           element-loading-text="数据加载中"
           border
-          :data="pageList"
+          :data="tableList"
           row-key="id"
-          default-expand-all
+          :default-expand-all="expandOptions.expands"
           :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
         >
           <el-table-column
@@ -99,7 +96,7 @@
           <el-table-column align="center" label="操作" width="150">
             <template slot-scope="scope">
               <el-button
-                type="success"
+                type="primary"
                 icon="el-icon-edit"
                 size="mini"
                 circle
@@ -160,7 +157,7 @@
 // 例如：import 《组件名称》 from '《组件路径》';
 import TreeSelect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
-import { select as deptTree, table as page, add, update, detail, del } from '@/api/admin/dept'
+import { select as deptTree, table, add, update, detail, del } from '@/api/admin/dept'
 
 export default {
   name: 'Dept',
@@ -183,7 +180,13 @@ export default {
         name: undefined,
         status: undefined
       },
-      pageList: [],
+      expandOptions: {
+        refreshTable: true,
+        expands: true,
+        icon: 'el-icon-arrow-up',
+        value: '收起'
+      },
+      tableList: [],
       dialog: {
         title: undefined,
         visible: false
@@ -210,10 +213,10 @@ export default {
   // 方法集合
   methods: {
     // 加载列表数据
-    getPage () {
+    getTable () {
       this.loading = true
-      page(this.queryParams).then((response) => {
-        this.pageList = response.data
+      table(this.queryParams).then((response) => {
+        this.tableList = response.data
         this.loading = false
       })
     },
@@ -230,12 +233,28 @@ export default {
     },
     // 搜索
     handleQuery () {
-      this.getPage()
+      this.getTable()
     },
     // 重置
     resetQuery () {
       this.resetForm('queryForm')
       this.handleQuery()
+    },
+    // 表格开合
+    async handleExpand () {
+      this.expandOptions.refreshTable = false
+      if (this.expandOptions.expands) {
+        this.expandOptions.expands = false
+        this.expandOptions.icon = 'el-icon-arrow-down'
+        this.expandOptions.value = '展开'
+      } else {
+        this.expandOptions.expands = true
+        this.expandOptions.icon = 'el-icon-arrow-up'
+        this.expandOptions.value = '收起'
+      }
+      this.$nextTick(() => {
+        this.expandOptions.refreshTable = true
+      })
     },
     // 新增按钮操作
     async handleAdd () {

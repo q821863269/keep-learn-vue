@@ -114,6 +114,18 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/demo',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/demo/index'),
+        name: 'Demo',
+        meta: { title: 'Demo', icon: 'example', noCache: true }
+      }
+    ]
+  },
+  {
     path: '/401',
     component: () => import('@/views/error-page/401'),
     name: '401',

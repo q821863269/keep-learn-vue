@@ -4,7 +4,7 @@
     <el-row :gutter="10">
       <!-- 左侧部门树 -->
       <el-col :xs="24" :sm="24" :md="6" :lg="5">
-        <div class="app-container-tree">
+        <div class="app-container-left">
           <el-card class="box-card-tree">
             <el-input
               v-model="deptName"
@@ -27,7 +27,7 @@
       </el-col>
       <!-- 右侧列表 -->
       <el-col :xs="24" :sm="24" :md="18" :lg="19">
-        <div class="app-container-table">
+        <div class="app-container-right">
           <!-- 搜索条件 -->
           <el-card class="box-card-search" v-show="showSearch">
             <el-form ref="queryForm" :model="queryParams" :inline="true">
@@ -93,19 +93,19 @@
           <!-- 列表 -->
           <el-card class="box-card-table">
             <el-row class="mb10">
-              <el-col :span="1.5">
-                <el-button type="primary" icon="el-icon-plus" size="mini" @click="handleAdd">新增</el-button>
+              <el-col :span="1.5" v-has-permission="['admin:users:add']">
+                <el-button type="success" icon="el-icon-plus" size="mini" @click="handleAdd">新增</el-button>
               </el-col>
-              <el-col :span="1.5">
-                <el-button :disabled="single" type="success" icon="el-icon-edit" size="mini" @click="handleUpdate">修改</el-button>
+              <el-col :span="1.5" v-has-permission="['admin:users:edit']">
+                <el-button :disabled="single" type="primary" icon="el-icon-edit" size="mini" @click="handleUpdate">修改</el-button>
               </el-col>
-              <el-col :span="1.5">
+              <el-col :span="1.5" v-has-permission="['admin:users:delete']">
                 <el-button :disabled="multiple" type="danger" icon="el-icon-delete" size="mini" @click="handleDelete">删除</el-button>
               </el-col>
-              <el-col :span="1.5">
+              <el-col :span="1.5" v-has-permission="['admin:users:import']">
                 <el-button type="info" icon="el-icon-upload2" size="mini" @click="handleImport">导入</el-button>
               </el-col>
-              <el-col :span="1.5">
+              <el-col :span="1.5" v-has-permission="['admin:users:export']">
                 <el-button type="warning" icon="el-icon-download" size="mini" @click="handleExport">导出</el-button>
               </el-col>
               <right-toolbar
@@ -147,13 +147,13 @@
               <el-table-column align="center" label="操作" width="150">
                 <template slot-scope="scope">
                   <el-button
-                    type="success"
+                    type="primary"
                     icon="el-icon-edit"
                     size="mini"
                     circle
                     plain
                     @click.stop="handleUpdate(scope.row)"
-                    v-has-permission="['admin:user:edit']"
+                    v-has-permission="['admin:users:edit']"
                   />
                   <el-button
                     type="danger"
@@ -162,7 +162,7 @@
                     circle
                     plain
                     @click.stop="handleDelete(scope.row)"
-                    v-has-permission="['admin:user:delete']"
+                    v-has-permission="['admin:users:delete']"
                   />
                   <el-button
                     type="info"
@@ -171,6 +171,7 @@
                     circle
                     plain
                     @click.stop="handleResetPassword(scope.row)"
+                    v-has-permission="['admin:users:reset']"
                   />
                 </template>
               </el-table-column>
@@ -435,7 +436,10 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        patch(row.id, { status: row.status }).then(() => {
+        patch(row.id, {
+          id: row.id,
+          status: row.status
+        }).then(() => {
           this.$message.success(text + '成功')
         }).catch(() => {
           row.status = !row.status
@@ -559,6 +563,7 @@ export default {
         }
       }).then(({ value }) => {
         patch(row.id, {
+          id: row.id,
           password: value
         }).then(() => {
           this.$message.success('修改成功，新密码是：' + value)

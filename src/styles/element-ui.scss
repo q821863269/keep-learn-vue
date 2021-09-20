@@ -69,7 +69,7 @@
 // dropdown
 .el-dropdown-menu {
   a {
-    display: block
+    display: block;
   }
 }
 
@@ -83,7 +83,7 @@
 @media only screen and (max-width: 470px) {
   // 手机端的消息不要那么长
   .el-message {
-    min-width: 300px
+    min-width: 300px;
   }
 
   // 处理分页
@@ -107,6 +107,11 @@
   .el-dialog {
     width: 100vw !important;
   }
+
+  // 处理el-popover
+  .el-popover {
+    width: 100% !important;
+  }
 }
 
 // 头像下拉框文字居中
@@ -116,24 +121,25 @@
 
 // 表格
 .el-table {
-	.el-table__header-wrapper, .el-table__fixed-header-wrapper {
-		th {
-			word-break: break-word;
-			background-color: #f8f8f9;
-			color: #515a6e;
-			height: 40px;
-			font-size: 13px;
-		}
-	}
-	.el-table__body-wrapper {
-		.el-button [class*="el-icon-"] + span {
-			margin-left: 1px;
-		}
-	}
+  .el-table__header-wrapper,
+  .el-table__fixed-header-wrapper {
+    th {
+      word-break: break-word;
+      background-color: #f8f8f9;
+      color: #515a6e;
+      height: 40px;
+      font-size: 13px;
+    }
+  }
+  .el-table__body-wrapper {
+    .el-button [class*="el-icon-"] + span {
+      margin-left: 1px;
+    }
+  }
 }
 
 // 列表搜索栏表单上下间距
-.el-form--inline .el-form-item{
+.el-form--inline .el-form-item {
   margin-top: 6px;
   margin-bottom: 6px;
 }
@@ -146,7 +152,7 @@
 
 // 分页居右
 .pagination-container .el-pagination {
-	float: right;
+  float: right;
   margin-bottom: 15px;
 }
 
@@ -158,10 +164,15 @@
 }
 
 // 修改上传弹出框没有铺满问题
-.el-upload.el-upload--text{
+.el-upload.el-upload--text {
   width: 100% !important;
 
   .el-upload-dragger {
     width: 100% !important;
   }
+}
+
+// 解决select下拉框不全问题
+.el-select-dropdown .el-scrollbar .el-scrollbar__wrap {
+  overflow: scroll !important;
 }

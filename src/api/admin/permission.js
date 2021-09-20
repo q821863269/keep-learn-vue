@@ -1,23 +1,16 @@
 import request from '@/utils/request'
 
-export function route () {
+export function page (queryParams) {
   return request({
-    url: '/admin/menus/route',
-    method: 'get'
-  })
-}
-
-export function select (queryParams) {
-  return request({
-    url: '/admin/menus/select',
+    url: '/admin/permissions',
     method: 'get',
     params: queryParams
   })
 }
 
-export function table (queryParams) {
+export function list (queryParams) {
   return request({
-    url: '/admin/menus/table',
+    url: '/admin/permissions/list',
     method: 'get',
     params: queryParams
   })
@@ -25,14 +18,14 @@ export function table (queryParams) {
 
 export function detail (id) {
   return request({
-    url: '/admin/menus/' + id,
+    url: '/admin/permissions/' + id,
     method: 'get'
   })
 }
 
 export function add (data) {
   return request({
-    url: '/admin/menus',
+    url: '/admin/permissions',
     method: 'post',
     data: data
   })
@@ -40,23 +33,15 @@ export function add (data) {
 
 export function update (id, data) {
   return request({
-    url: '/admin/menus/' + id,
+    url: '/admin/permissions/' + id,
     method: 'put',
-    data: data
-  })
-}
-
-export function patch (id, data) {
-  return request({
-    url: '/admin/menus/' + id,
-    method: 'patch',
     data: data
   })
 }
 
 export function del (ids) {
   return request({
-    url: '/admin/menus/' + ids,
+    url: '/admin/permissions/' + ids,
     method: 'delete'
   })
 }

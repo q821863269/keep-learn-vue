@@ -20,7 +20,7 @@ function hasPermission (el, binding) {
       }
     }
   } else {
-    throw new Error(`need perms! Like v-has-permission="['sys:user:add','sys:user:edit']"`)
+    throw new Error(`need perms! Like v-has-permission="['admin:users:add','admin:users:edit']"`)
   }
 }
 

@@ -145,7 +145,6 @@ const actions = {
   // dynamically modify permissions
   async changeRoles ({ commit, dispatch }, role) {
     const token = role + '-token'
-    console.log(token)
 
     commit('SET_TOKEN', token)
     setToken(token)

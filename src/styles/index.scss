@@ -122,13 +122,13 @@ aside {
 
 //main-container全局样式
 .app-container {
-  padding: 15px;
+  padding: 15px 15px 5px 15px;
 
-  .app-container-tree{
+  .app-container-left {
     margin-bottom: 10px;
   }
 
-  .app-container-table {
+  .app-container-right {
     .el-card {
       margin-bottom: 10px;
     }
