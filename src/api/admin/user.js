@@ -55,6 +55,10 @@ export function getUserInfo () {
 
 export const excelImport = process.env.VUE_APP_BASE_API + '/admin/users/excelImport'
 
-export function excelExport (filename, queryParams = { pageNum: 0 }) {
-  download('/admin/users/excelExport', queryParams, filename)
+export function excelTemplate (filename) {
+  download('/admin/users/excelExport', { pageNum: 0 }, filename)
+}
+
+export function excelExport (filename, queryParams) {
+  download('/admin/users/excelExport', queryParams, filename, '导出成功')
 }

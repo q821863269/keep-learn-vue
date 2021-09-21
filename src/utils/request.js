@@ -78,14 +78,14 @@ service.interceptors.response.use(({ config, data }) => {
 })
 
 // 通用下载方法
-export function download (url, params, filename, type = '.xlsx') {
-  Message({ message: '导出中，请稍候', type: 'info' })
+export function download (url, params, filename, msg = '下载成功', type = '.xlsx') {
+  Message({ message: '下载中，请稍候', type: 'info' })
   filename = filename + '_' + parseTime(new Date(), '{y}{m}{d}{h}{i}') + type
   return service.get(url, {
     params,
     responseType: 'blob'
   }).then((data) => {
-    Message({ message: '导出成功', type: 'success' })
+    Message({ message: msg, type: 'success' })
     // 检测当前浏览器是否支持download属性
     if ('download' in document.createElement('a')) {
       const elink = document.createElement('a')

@@ -31,10 +31,10 @@
           <!-- 搜索条件 -->
           <el-card class="box-card-search" v-show="showSearch">
             <el-form ref="queryForm" :model="queryParams" :inline="true">
-              <el-form-item label="用户昵称" prop="nickname">
+              <el-form-item label="昵称" prop="nickname">
                 <el-input
                   v-model="queryParams.nickname"
-                  placeholder="请输入用户昵称"
+                  placeholder="请输入昵称"
                   @keyup.enter.native="handleQuery"
                   clearable
                   size="small"
@@ -283,7 +283,7 @@
 // 例如：import 《组件名称》 from '《组件路径》';
 import TreeSelect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
-import { page, add, update, patch, detail, del, excelImport, excelExport } from '@/api/admin/user'
+import { page, add, update, patch, detail, del, excelImport, excelTemplate, excelExport } from '@/api/admin/user'
 import { select as deptTree } from '@/api/admin/dept'
 import { list as roleList } from '@/api/admin/role'
 import { getToken } from '@/utils/auth'
@@ -309,7 +309,8 @@ export default {
         deptId: undefined,
         username: undefined,
         mobile: undefined,
-        daterange: undefined
+        startTime: undefined,
+        endTime: undefined
       },
       pagination: {
         page: 1,
@@ -517,7 +518,7 @@ export default {
     },
     // 下载模板操作
     downloadTemplate () {
-      excelExport('用户信息模板')
+      excelTemplate('用户信息模板')
     },
     // 提交上传文件
     submitFileForm () {
