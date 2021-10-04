@@ -102,18 +102,6 @@ export const constantRoutes = [
   //   ]
   // },
   {
-    path: '/icon',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/icons/index'),
-        name: 'Icons',
-        meta: { title: '图标', icon: 'icon', noCache: true }
-      }
-    ]
-  },
-  {
     path: '/demo',
     component: Layout,
     children: [
@@ -122,6 +110,18 @@ export const constantRoutes = [
         component: () => import('@/views/demo/index'),
         name: 'Demo',
         meta: { title: 'Demo', icon: 'example', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/icon',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/icons/index'),
+        name: 'Icons',
+        meta: { title: '图标', icon: 'icon', noCache: true }
       }
     ]
   },

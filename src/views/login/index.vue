@@ -137,7 +137,10 @@ export default {
           this.$store.dispatch('user/login', this.loginForm)
             .then(() => {
               this.$router.push({ path: this.redirect || '/', query: this.otherQuery }).catch(() => {})
-              // this.loading = false
+              // 3秒后，重置登录按钮
+              setTimeout(() => {
+                this.loading = false
+              }, 2000)
             })
             .catch(() => {
               this.loading = false

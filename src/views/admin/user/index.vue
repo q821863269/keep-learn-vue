@@ -121,7 +121,7 @@
               :data="pageList"
               @selection-change="handleSelectionChange"
             >
-              <el-table-column align="center" type="selection" width="35" />
+              <el-table-column align="center" type="selection" width="40" />
               <el-table-column align="center" label="用户名" prop="username"/>
               <el-table-column align="center" label="昵称" prop="nickname"/>
               <el-table-column align="center" label="性别" prop="gender" width="60">
@@ -382,6 +382,10 @@ export default {
         const { records, total } = response.data
         this.pageList = records
         this.pagination.total = total
+        this.loading = false
+      }).catch(() => {
+        this.pageList = []
+        this.pagination.total = 0
         this.loading = false
       })
     },

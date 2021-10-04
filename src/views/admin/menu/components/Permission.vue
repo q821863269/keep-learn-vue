@@ -3,7 +3,7 @@
   <div class="app-container-right">
     <el-card class="box-card">
       <div slot="header">
-        <b><svg-icon icon-class="route"/>{{ menuName }}权限列表</b>
+        <b>{{ menuName }}权限列表</b>
       </div>
       <!-- 搜索条件 -->
       <el-form ref="queryForm" :model="queryParams" :inline="true" @submit.native.prevent>
@@ -37,6 +37,9 @@
       <el-row class="mt5 mb10">
         <el-col :span="1.5">
           <el-button type="success" icon="el-icon-plus" size="mini" @click="handleAdd">新增</el-button>
+        </el-col>
+        <el-col :span="1.5">
+          <el-button :disabled="multiple" type="danger" icon="el-icon-delete" size="mini" @click="handleDelete">删除</el-button>
         </el-col>
       </el-row>
       <!-- 表格组件 -->

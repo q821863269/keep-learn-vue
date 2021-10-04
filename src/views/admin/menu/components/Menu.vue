@@ -3,7 +3,7 @@
   <div class="app-container-left">
     <el-card class="box-card">
       <div slot="header">
-        <b><svg-icon icon-class="menu"/>菜单列表</b>
+        <b>菜单列表</b>
       </div>
       <!-- 搜索条件 -->
       <el-form ref="queryForm" :model="queryParams" :inline="true" @submit.native.prevent>
@@ -89,7 +89,7 @@
               @click.stop="handleDelete(scope.row)"
             />
           </template>
-      </el-table-column>
+        </el-table-column>
       </el-table>
     </el-card>
 

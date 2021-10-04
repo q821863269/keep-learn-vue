@@ -1,17 +1,29 @@
 <template>
   <!-- 必须有一层父元素 -->
   <div class="app-container">
-    <h1>字典管理</h1>
+    <el-row :gutter="10">
+      <!-- 左侧字典列表 -->
+      <el-col :xs="24" :sm="24" :md="12" :lg="12">
+        <dict />
+      </el-col>
+      <!-- 右侧数据项 -->
+      <el-col :xs="24" :sm="24" :md="12" :lg="12">
+        <dictItem />
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》';
+import Dict from './components/Dict'
+import DictItem from './components/DictItem'
 
 export default {
-  name: 'Dict',
+  name: 'DictIndex',
   // import引入的组件需要注入到对象中才能使用
+  components: { Dict, DictItem },
   data () {
     return {}
   },

@@ -1,7 +1,12 @@
 <template>
   <!-- 必须有一层父元素 -->
   <div class="app-container">
-    <h1>客户端管理</h1>
+    <div class="app-container-right">
+      <!-- 搜索条件 -->
+      <el-card class="box-card-search" v-show="showSearch"> </el-card>
+      <!-- 列表 -->
+      <el-card class="box-card-table"> </el-card>
+    </div>
   </div>
 </template>
 
@@ -13,7 +18,18 @@ export default {
   name: 'Client',
   // import引入的组件需要注入到对象中才能使用
   data () {
-    return {}
+    return {
+      // 遮罩层
+      loading: true,
+      // 选中数组
+      ids: [],
+      // 非单个禁用
+      single: true,
+      // 非多个禁用
+      multiple: true,
+      // 显示搜索条件
+      showSearch: true
+    }
   },
   // 方法集合
   methods: {},
