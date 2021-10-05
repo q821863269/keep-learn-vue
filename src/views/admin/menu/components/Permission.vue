@@ -7,7 +7,7 @@
       </div>
       <!-- 搜索条件 -->
       <el-form ref="queryForm" :model="queryParams" :inline="true" @submit.native.prevent>
-        <el-form-item prop="name">
+        <el-form-item label="权限名称" prop="name">
           <el-input
             v-model="queryParams.name"
             placeholder="请输入权限名称"
@@ -62,7 +62,7 @@
               size="mini"
               circle
               plain
-              @click="handleEdit(scope.row)"/>
+              @click="handleUpdate(scope.row)"/>
             <el-button
               type="danger"
               icon="el-icon-delete"
@@ -253,7 +253,7 @@ export default {
       }
     },
     // 修改
-    async handleEdit (row) {
+    async handleUpdate (row) {
       await this.loadMicroServices()
       await this.loadRequestMethods()
       this.resetDialogForm()

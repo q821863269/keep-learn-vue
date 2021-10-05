@@ -4,7 +4,7 @@
     <div class="app-container-right">
       <!-- 搜索条件 -->
       <el-card class="box-card-search" v-show="showSearch">
-        <el-form ref="queryForm" :model="queryParams" :inline="true">
+        <el-form ref="queryForm" :model="queryParams" :inline="true" @submit.native.prevent>
           <el-form-item label="部门名称" prop="name">
             <el-input
               v-model="queryParams.name"

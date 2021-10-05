@@ -7,7 +7,7 @@
       </div>
       <!-- 搜索条件 -->
       <el-form ref="queryForm" :model="queryParams" :inline="true" @submit.native.prevent>
-        <el-form-item prop="name">
+        <el-form-item label="角色名称" prop="name">
           <el-input
             v-model="queryParams.name"
             placeholder="请输入角色名称"
@@ -77,7 +77,7 @@
               size="mini"
               circle
               plain
-              @click.stop="handleEdit(scope.row)"
+              @click.stop="handleUpdate(scope.row)"
             />
             <el-button
               type="danger"
@@ -247,7 +247,7 @@ export default {
       }
     },
     // 修改按钮操作
-    async handleEdit (row) {
+    async handleUpdate (row) {
       this.resetDialogForm()
       const id = row.id || this.ids
       detail(id).then(response => {
