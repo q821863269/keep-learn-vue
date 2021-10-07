@@ -480,11 +480,11 @@ export default {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
-      }).then(function () {
-        return del(ids)
       }).then(() => {
-        this.$message.success('删除成功')
-        this.handleQuery()
+        del(ids).then(() => {
+          this.$message.success('删除成功')
+          this.handleQuery()
+        })
       })
       // .catch(() =>
       //   this.$message.info('已取消删除')

@@ -222,6 +222,17 @@ export default {
   },
   // 方法集合
   methods: {
+    // 加载列表数据
+    getTable () {
+      this.loading = true
+      table(this.queryParams).then((response) => {
+        this.tableList = response.data
+        this.loading = false
+      }).catch(() => {
+        this.tableList = []
+        this.loading = false
+      })
+    },
     // 加载菜单选项
     loadMenuOptions () {
       menuTree({ addTop: true }).then(response => {
@@ -235,11 +246,7 @@ export default {
     },
     // 搜索
     handleQuery () {
-      this.loading = true
-      table(this.queryParams).then((response) => {
-        this.tableList = response.data
-        this.loading = false
-      })
+      this.getTable()
     },
     // 重置
     resetQuery () {
@@ -310,11 +317,11 @@ export default {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
-      }).then(function () {
-        return del(ids)
       }).then(() => {
-        this.$message.success('删除成功')
-        this.loadData()
+        del(ids).then(() => {
+          this.$message.success('删除成功')
+          this.loadData()
+        })
       })
     },
     // 确定 新增或修改
@@ -326,13 +333,13 @@ export default {
             add(this.form).then(() => {
               this.$message.success('新增成功')
               this.dialog.visible = false
-              this.handleQuery()
+              this.loadData()
             })
           } else {
             update(this.form.id, this.form).then(() => {
               this.$message.success('修改成功')
               this.dialog.visible = false
-              this.handleQuery()
+              this.loadData()
             })
           }
         }

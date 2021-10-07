@@ -256,7 +256,15 @@ export default {
         this.pageList = records
         this.pagination.total = total
         this.loading = false
+      }).catch(() => {
+        this.pageList = []
+        this.pagination.total = 0
+        this.loading = false
       })
+    },
+    // 加载数据
+    async loadData () {
+      this.handleQuery()
     },
     // 搜索
     handleQuery () {
@@ -305,11 +313,11 @@ export default {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
-      }).then(function () {
-        return del(ids)
       }).then(() => {
-        this.$message.success('删除成功')
-        this.handleQuery()
+        del(ids).then(() => {
+          this.$message.success('删除成功')
+          this.handleQuery()
+        })
       })
     },
     // 确定 新增或修改
@@ -370,7 +378,7 @@ export default {
   watch: {},
   // 生命周期 - 创建完成（可以访问当前this实例）
   created () {
-    this.handleQuery()
+    this.loadData()
   },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {},

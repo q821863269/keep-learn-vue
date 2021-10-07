@@ -225,7 +225,7 @@ export default {
       this.handleQuery()
       this.handleRowClick(undefined)
     },
-    // 列表角色点击事件
+    // 列表行点击事件
     handleRowClick (row) {
       if (row === undefined) {
         if (this.checkedRoleId !== undefined) {
@@ -265,11 +265,11 @@ export default {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
-      }).then(function () {
-        return del(ids)
       }).then(() => {
-        this.$message.success('删除成功')
-        this.loadData()
+        del(ids).then(() => {
+          this.$message.success('删除成功')
+          this.handleQuery()
+        })
       })
     },
     // 确定 新增或修改
@@ -281,13 +281,13 @@ export default {
             add(this.form).then(() => {
               this.$message.success('新增成功')
               this.dialog.visible = false
-              this.loadData()
+              this.handleQuery()
             })
           } else {
             update(this.form.id, this.form).then(() => {
               this.$message.success('修改成功')
               this.dialog.visible = false
-              this.loadData()
+              this.handleQuery()
             })
           }
         }

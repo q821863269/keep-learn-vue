@@ -181,6 +181,10 @@ export default {
         this.pageList = records
         this.pagination.total = total
         this.loading = false
+      }).catch(() => {
+        this.pageList = []
+        this.pagination.total = 0
+        this.loading = false
       })
     },
     loadMicroServices () {
@@ -288,11 +292,11 @@ export default {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
-      }).then(function () {
-        return del(ids)
       }).then(() => {
-        this.$message.success('删除成功')
-        this.handleQuery()
+        del(ids).then(() => {
+          this.$message.success('删除成功')
+          this.handleQuery()
+        })
       })
     },
     // 确定 新增或修改
