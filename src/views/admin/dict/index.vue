@@ -4,11 +4,11 @@
     <el-row :gutter="10">
       <!-- 左侧字典列表 -->
       <el-col :xs="24" :sm="24" :md="12" :lg="12">
-        <dict />
+        <dict @dictClick="dictClick" @resetItem="resetItem" ref="dict"/>
       </el-col>
       <!-- 右侧数据项 -->
       <el-col :xs="24" :sm="24" :md="12" :lg="12">
-        <dictItem />
+        <dictItem ref="dictItem"/>
       </el-col>
     </el-row>
   </div>
@@ -28,7 +28,14 @@ export default {
     return {}
   },
   // 方法集合
-  methods: {},
+  methods: {
+    dictClick (row) {
+      this.$refs.dictItem.dictClick(row)
+    },
+    resetItem () {
+      this.$refs.dictItem.dictClick()
+    }
+  },
   // 监听属性 类似于data概念
   computed: {},
   // 监控data中的数据变化

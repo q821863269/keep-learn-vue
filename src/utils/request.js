@@ -41,16 +41,6 @@ service.interceptors.response.use(({ config, data }) => {
   const { code, msg } = data
   if (code === 0) {
     return data
-  } else if (code === 1014 || code === 1015) {
-    MessageBox.confirm('登录状态已过期，您可以继续留在该页面，或者重新登录', '系统提示', {
-      confirmButtonText: '重新登录',
-      cancelButtonText: '取消',
-      type: 'warning'
-    }).then(() => {
-      store.dispatch('user/logout').then(() => {
-        location.href = '/login'
-      })
-    })
   } else {
     const showMsg = `${code}：${msg}`
     Message({
@@ -63,11 +53,23 @@ service.interceptors.response.use(({ config, data }) => {
 (error) => {
   const { code, msg } = error.response.data
   if (code && msg) {
-    const showMsg = `${code}：${msg}`
-    Message({
-      message: showMsg,
-      type: 'error'
-    })
+    if (code === 1014 || code === 1015) {
+      MessageBox.confirm('登录状态已过期，您可以继续留在该页面，或者重新登录', '系统提示', {
+        confirmButtonText: '重新登录',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        store.dispatch('user/logout').then(() => {
+          location.href = '/login'
+        })
+      })
+    } else {
+      const showMsg = `${code}：${msg}`
+      Message({
+        message: showMsg,
+        type: 'error'
+      })
+    }
   } else {
     Message({
       message: '有点不对劲~',

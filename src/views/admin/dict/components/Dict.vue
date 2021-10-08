@@ -213,6 +213,7 @@ export default {
     resetQuery () {
       this.resetForm('queryForm')
       this.handleQuery()
+      this.$emit('resetItem')
     },
     // 列表行点击事件
     handleRowClick (row) {
